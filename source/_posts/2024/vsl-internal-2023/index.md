@@ -1,5 +1,5 @@
 ---
-title: "VSL CTF 2023 - Internal"
+title: "[Writeup] VSL CTF 2023 - Internal"
 description: "VSL CTF 2023 - Internal Writeup"
 summary: "VSL CTF 2023 - Internal Writeup"
 categories: ["Writeup"]

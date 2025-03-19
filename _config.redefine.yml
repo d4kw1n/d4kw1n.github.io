@@ -211,15 +211,16 @@ navbar:
     Bookmarks:
       icon: fa-solid fa-bookmark
       path: /bookmarks/
+    Cert:
+      path: /certificate/
+      icon: fa-regular fa-certificate
     About:
       icon: fa-regular fa-user
       submenus:
         Me: /about
         Github: https://github.com/d4kw1n
         Blog: https://hackmd.io/@d4kw1n
-    Cert:
-      path: /certificate/
-      icon: fa-regular fa-certificate
+
     #     Friends: /friends
     # Links:
     #   icon: fa-regular fa-link

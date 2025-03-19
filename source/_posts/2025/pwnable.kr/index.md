@@ -35,7 +35,7 @@ ssh fd@pwnable.kr -p2222 (pw:guest)
 ```
 
 Server có 3 file
-![{F03617D7-A3B7-4162-A979-9F409D9CB186}](https://hackmd.io/_uploads/SkmANXcsyg.png)
+![alt img](/img/2025/pwnable.kr/image.png)
 
 Bài này đơn giản là sẽ lấy tham số truyền vào => Chuyển đổi thành số => Đem trừ cho 0x1234 => Đưa thành [file descriptor](https://www.geeksforgeeks.org/input-output-system-calls-c-create-open-close-read-write/) của hàm read để ghi giá trị vào biến buf => So sánh buf với chuỗi "LETMEWIN" => In ra flag
 
@@ -62,7 +62,7 @@ I wanna do something like that too!
 ssh col@pwnable.kr -p2222 (pw:guest)
 ```
 
-![{3C9F6E0C-E1E8-4922-8EA5-F1AF1C73925B}](https://hackmd.io/_uploads/rJrDP7ciJl.png)
+![alt img](/img/2025/pwnable.kr/image-1.png)
 
 Challenge này yêu cầu một tham số truyền vào có độ dài 20 bytes để làm passcode => Được đem đi xử lý ở hàm check_password => Sau đo so sánh với hashcode = 0x21DD09EC => Nếu khớp thì in ra flag.
 
@@ -198,11 +198,11 @@ This is reversing task. all you need is binary
 
 Bài này là một bài reverse cơ bản, mở nó lên bằng IDA thì thấy không có gì => Dùng DIE để mở lên thì thấy chương trình bị pack bởi UPX
 
-![{0628FA38-2659-4DF8-BBD2-080BC344AFBF}](https://hackmd.io/_uploads/SJcdgNqiyg.png)
+![alt img](/img/2025/pwnable.kr/image-2.png)
 
 Unpack và mở lên lại bằng IDA và lấy được flag
 
-![{C6518242-69FF-442B-A205-F04208B3E01B}](https://hackmd.io/_uploads/HJFS-E9jye.png)
+![alt img](/img/2025/pwnable.kr/image-3.png)
 
 ### mistake
 
@@ -322,7 +322,7 @@ ssh shellshock@pwnable.kr -p2222 (pw:guest)
 
 Challenge gồm 4 file: bash, flag, shellshork, shellshork.c
 
-![{9E0EDFC6-6878-4720-BA01-850A5E77C9A6}](https://hackmd.io/_uploads/rJ3TiVcjke.png)
+![alt img](/img/2025/pwnable.kr/image-4.png)
 
 - Với bài này, mình chưa biết shellshork là gì, nên sẽ đi tìm hiểu trước.
 
@@ -1363,17 +1363,17 @@ horcruxes@pwnable:~$
 Ở challenge này không được cung cấp mã nguồn => Dùng IDA để phân tích.
 
 **Main function**
-![Main_disass](https://hackmd.io/_uploads/ryhOUu6sJx.png)
+![alt img](/img/2025/pwnable.kr/image-5.png)
 
 **init_ABCDEFG function**
 
-![{init_ABCDEFG}](https://hackmd.io/_uploads/H1g3UOpiJg.png)
+![alt img](/img/2025/pwnable.kr/image-6.png)
 
 **ropme function**
 
-![{ropme}](https://hackmd.io/_uploads/S1l1Dd6s1l.png)
+![alt img](/img/2025/pwnable.kr/image-7.png)
 
-Ở hàm **ropme**, có lỗi BOF ở hàm **gets(s)**. Kết hợp với tên hàm là rop, nên mình dự đoán bài này dùng kỹ thuật ROP để đọc các giá trị của các biến **a, b, c, d, e, f, g** rồi tính ra **sum**. 
+Ở hàm **ropme**, có lỗi BOF ở hàm **gets(s)**. Kết hợp với tên hàm là rop, nên mình dự đoán bài này dùng kỹ thuật ROP để đọc các giá trị của các biến **a, b, c, d, e, f, g** rồi tính ra **sum**.
 
 > Ban đầu, mình nghĩ sẽ BOF để quay lại hàm **init_ABCDEFG**, sau đó rop đến địa chỉ của một hàm **puts** để in ra giá trị của **sum** cho tiết kiệm thời gian. Tuy nhiên, địa chỉ ở hàm **init_ABCDEFG** đều có dạng `080A****`.
     - Hàm **gets** sẽ lấy chuỗi nhập vào từ stdin cho đến ghi gặp ký tự xuống dòng **"\n"**, hay là **"0x0a"**
@@ -1552,9 +1552,9 @@ Dựa vào mô tả của challenge và phân tích source code, mình nhận th
 
 Hàm **login()** được gọi ngay sau khi hàm **welcome()** được gọi => **Stack frame** sẽ trùng nhau
 
-![{stack_frame_of_welcome}](https://hackmd.io/_uploads/ryfgNFasJl.png)
+![alt img](/img/2025/pwnable.kr/image-8.png)
 
-![{stack_frame_of_login}](https://hackmd.io/_uploads/B1bz4Fasyg.png)
+![alt img](/img/2025/pwnable.kr/image-9.png)
 
 => Giá trị của biến **passcode1** sẽ là giá trị của biến **name** ở địa chỉ có index là: `(-0x0C) - (-0x70) = 0x60 (Dec: 96)`
 
@@ -1669,7 +1669,7 @@ Running at : nc pwnable.kr 9007
 Bài này không cung cấp source code, nên mình cố gắng kết nối đến server thì nhận được thông tin sau
 
 
-![image](https://hackmd.io/_uploads/HyUOQoaiJl.png)
+![alt img](/img/2025/pwnable.kr/image-10.png)
 
 
 Vậy là bài này sẽ là một bài giải toán :>
@@ -1728,7 +1728,7 @@ for i in range(100):
 r.interactive()
 ```
 
-![{poc_coin1}](https://hackmd.io/_uploads/SkT-EiToyx.png)
+![alt img](/img/2025/pwnable.kr/image-11.png)
 
 
 ### 
