@@ -131,7 +131,7 @@ home_banner:
   title: d4kw1n
   # Home banner subtitle
   subtitle:
-    text: ["Pwn is art, and the pwner is the artist", "Think like an attacker, act like a researcher", "The best defense is understanding the offense", "Exploit the Unknown, Dominate the Known"] # subtitle text, array
+    text: ["Hack to learn, not learn to hack", "Every vulnerability is an opportunity—either to break or to fix.", "Hack the code, and the rules.", "The best exploits are found where no one dares to look."] # subtitle text, array
     hitokoto:  # 一言配置
       enable: false # Whether to enable hitokoto
       show_author: false # Whether to show author
@@ -216,7 +216,7 @@ navbar:
       submenus:
         Me: /about
         Github: https://github.com/d4kw1n
-    #     Blog: https://ohevan.com
+        Blog: https://hackmd.io/@d4kw1n
     #     Friends: /friends
     # Links:
     #   icon: fa-regular fa-link
