@@ -32,6 +32,6 @@ showRelatedContent: false
    - Nguyen Manh Luat, Director, Cyber Jutsu JSC
    - Lam Minh Bao, Course Mentor
 
-   ![cyberjutsu.jpg](image/cyberjutsu.jpg)
+   ![cyberjutsu.jpg](/img/cert/cyber-jutsu/cyberjutsu.jpg)
 
 ---
