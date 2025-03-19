@@ -128,7 +128,7 @@ home_banner:
     light: /images/wallhaven-wqery6-light.webp # light mode
     dark: /images/wallhaven-wqery6-dark.webp # dark mode
   # Home banner title
-  title: ✧ Alter ✧
+  title: d4kw1n
   # Home banner subtitle
   subtitle:
     text: ["Pwn is art, and the pwner is the artist", "Think like an attacker, act like a researcher", "The best defense is understanding the offense", "Exploit the Unknown, Dominate the Known"] # subtitle text, array
