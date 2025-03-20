@@ -1,5 +1,5 @@
 ---
-title: "Web Goat Writeup"
+title: "[Writeup] Web Goat"
 description: "Web Goat Writeup"
 summary: "Web Goat Writeup"
 categories: ["Writeup"]
@@ -11,9 +11,7 @@ authors:
   - d4kw1n
 ---
 
-## WebGoat
-
-- Đây là writeup các lab trong [Webgoat](https://github.com/WebGoat/WebGoat)
+Trong đợt thực tập ở VNPT Cyber Immunity Đà Nẵng. Mình được giao task làm các challenge trong Web Goat. Và đây là writeup các lab trong [Webgoat](https://github.com/WebGoat/WebGoat)
 
 # (A1)Broken Access Control
 

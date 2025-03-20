@@ -7,7 +7,10 @@ tags:
 
 ---
 
-# [Writeup] Try hard PWNABLE.kr
+Đợt này mình nghỉ thực tập cũng như làm free lancer về code nên cũng hơi rảnh rỗi. Vì vậy, mình quyết định try hard PWN cho năm nay. Trang pwnable.kr là target đầu tiên mình nhắm tới để cố gắng clear nhiều challenge nhất có thể trước khi đến với các giải CTF lớn trong năm.
+Hy vọng năm nay bản thân sẽ kiên trì ^^
+
+> PWN Mylife
 
 ## Things I Want to Tell Myself
 

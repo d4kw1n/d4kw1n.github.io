@@ -11,7 +11,8 @@ authors:
   - d4kw1n
 ---
 
-# WRITEUP VSL CTF Internal 2023
+Writeup của tất cả challenge trong giải VSL CTF 2023 - Internal. Gồm các mảng: Web, Mật mã, Dịch Ngược, Khai thác nhị phân, Điều tra số, OSINT, ...
+Cảm ơn sự tham gia của các player cũng như các bạn đã đóng góp Write-up <3
 
 ## Cryptography
 
