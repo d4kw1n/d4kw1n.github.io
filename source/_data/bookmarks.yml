@@ -1,5 +1,5 @@
-- category: Tools
-  icon: fa-tools # Tools category icon
+- category: AI
+  icon: fa-microchip-ai # Tools category icon
   items:
     - name: ChatGPT
       link: https://chat.openai.com # Bookmark URL
@@ -9,3 +9,14 @@
       link: https://www.anthropic.com/
       description: Anthropic's AI chat assistant
       image: https://www.anthropic.com/favicon.ico
+    - name: Gamma AI
+      link: https://gamma.app/
+      description: Generate Slide
+      image: https://gamma.app/favicons/favicon-192.svg
+- category: Tools
+  icon: fa-tools # Tools category icon
+  items:
+    - name: Libc RIP
+      link: https://libc.rip/ # Bookmark URL
+      description: Libc Database Search
+      image: https://libc.rip/favicon.ico # Website icon URL

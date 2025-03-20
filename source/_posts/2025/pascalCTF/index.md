@@ -1,6 +1,6 @@
 ---
 title: '[Writeup] PascalCTF 2025'
-date: 2025-03-20 05:58:12
+date: 2025-03-20 07:40:12
 tags:
   - PWN
   - Writeups
@@ -423,7 +423,7 @@ ReV3r53_1s_4w3s0m3
 
 ## Switcharoo
 
-![alt text](/img/2025/pascalCTF2025/Switcharoo)
+![alt text](/img/2025/pascalCTF2025/Switcharoo.png)
 
 ### Analysis
 

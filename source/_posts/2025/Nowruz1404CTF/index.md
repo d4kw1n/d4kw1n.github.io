@@ -1,9 +1,10 @@
 ---
 title: '[Writeup] - Nowruz 1404 (2025) - PWN'
 tag: ['PWN', 'Writeup']
+date: 2025-03-18 21:32:12
 ---
 
-# [Writeup] - Nowruz 1404 (2025) - PWN
+
 
 ## Pwn/Seen Shop
 
