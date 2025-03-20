@@ -1,19 +1,23 @@
 ---
 title: '[Writeup] PascalCTF 2025'
 date: 2025-03-20 07:40:12
+top_img: /img/2025/pascalCTF2025/image00.png
+cover: /img/2025/pascalCTF2025/image00.png
+category: ['Writeup']
 tags:
   - PWN
-  - Writeups
-
+  - Writeup
+author:
+  - d4kw1n
 ---
 
 Đang giữa tuần, và cũng rất nhiều bài kiểm tra giữa kỳ. Mình thấy hơi xì-chét nên lên check CTFTime thì thấy giải này. Giải này chơi cá nhân và chủ yếu là dành cho Newbie nên mình gần như clear đề (Còn mỗi câu Crypto cuối chưa làm kịp @@). Writeup này cũng như là để ghi nhớ giải CTF đầu tiên mà bản thân gần như clear trong năm.
 
 Mình sẽ chỉ giải một vài bài thuộc chuyên môn của mình (PWN, Web, RE - nhưng Web dễ quá nên mình lười viết hehehe) với giải thích đơn giản.
 
-![alt text](/img/2025/pascalCTF2025/image0.png)
-
 ![alt text](/img/2025/pascalCTF2025/image00.png)
+
+![alt text](/img/2025/pascalCTF2025/image0.png)
 
 # PWN
 

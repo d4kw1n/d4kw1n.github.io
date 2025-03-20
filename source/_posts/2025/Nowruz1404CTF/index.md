@@ -1,8 +1,14 @@
 ---
 title: '[Writeup] - Nowruz 1404 (2025) - PWN'
 tag: ['PWN', 'Writeup']
+top_img: /img/2025/Nowruz1404CTF/banner.png
+cover: /img/2025/Nowruz1404CTF/banner.png
+category: ['Writeup']
 date: 2025-03-18 21:32:12
+author:
+    - d4kw1n
 ---
+
 
 
 

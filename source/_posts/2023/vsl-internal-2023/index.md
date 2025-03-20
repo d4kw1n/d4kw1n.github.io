@@ -2,11 +2,13 @@
 title: "[Writeup] VSL CTF 2023 - Internal"
 description: "VSL CTF 2023 - Internal Writeup"
 summary: "VSL CTF 2023 - Internal Writeup"
-categories: ["Writeup"]
+categories: ["Writeup", "VSL CTF"]
 tags: ["Web", "PWN", "Reverse", "Forensic", "Cryptography", "OSINT"]
 #externalUrl: ""
 date: 2023-12-21
 draft: false
+top_img: /img/vsl-internal-2023/banner.png
+cover: /img/vsl-internal-2023/banner.png
 authors:
   - d4kw1n
 ---

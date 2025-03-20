@@ -1,0 +1,39 @@
+- class_name: AI
+  class_desc: AI tools and assistants
+  link_list:
+    - name: ChatGPT
+      link: https://chat.openai.com
+      avatar: https://chat.openai.com/favicon.ico
+      descr: OpenAI's AI chat assistant
+    - name: Claude
+      link: https://www.anthropic.com/
+      avatar: https://www.anthropic.com/favicon.ico
+      descr: Anthropic's AI chat assistant
+    - name: Gamma AI
+      link: https://gamma.app/
+      avatar: https://gamma.app/favicons/favicon-192.svg
+      descr: Generate Slide
+
+- class_name: Tools
+  class_desc: Useful online tools
+  link_list:
+    - name: Libc RIP
+      link: https://libc.rip/
+      avatar: https://libc.rip/favicon.ico
+      descr: Libc Database Search
+
+- class_name: Writing Tools
+  class_desc: Tools for writing and diagramming
+  link_list:
+    - name: Excalidraw
+      link: https://excalidraw.com/
+      avatar: https://excalidraw.com/favicon-32x32.png
+      descr: Draw diagrams in handwritten style
+
+- class_name: CTF
+  class_desc: Capture The Flag resources
+  link_list:
+    - name: CTF Search
+      link: https://ctfsearch.hackmap.win/
+      avatar: https://ctfsearch.hackmap.win/favicon.f35d1abd.png
+      descr: Search CTF Writeups

@@ -1,0 +1,10 @@
+- author: d4kw1n
+  avatar: /images/favicon.ico
+  date: 2025-03-21 23:33:26
+  content: |
+    Example content
+    ![Sample Image](/images/favicon-96x96.png)
+  key: key-1
+  tags:
+    - tags1
+    - tags2

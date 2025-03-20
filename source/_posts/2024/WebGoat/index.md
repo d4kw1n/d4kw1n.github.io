@@ -2,11 +2,13 @@
 title: "[Writeup] Web Goat"
 description: "Web Goat Writeup"
 summary: "Web Goat Writeup"
-categories: ["Writeup"]
+category: ["Writeup", "WebGoat"]
 tags: ["Web"]
 #externalUrl: ""
 date: 2024-08-21
 draft: false
+top_img: https://www.joehxblog.com/images/webgoat/logo.png
+cover: https://www.joehxblog.com/images/webgoat/logo.png
 authors:
   - d4kw1n
 ---

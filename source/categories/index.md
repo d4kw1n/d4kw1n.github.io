@@ -1,5 +1,6 @@
 ---
 title: Categories
-date: 2025/3/14 11:45:14
-template: tags
+date: 2025-03-21 00:00:00
+type: "categories"
+comments: false
 ---

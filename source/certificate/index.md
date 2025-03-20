@@ -1,8 +1,7 @@
 ---
-title: "Certificate"
+title: "My Certificate"
 date: 2024-10-21T16:32:40+01:00
 draft: false
-
 showDate : false
 showDateUpdated : false
 showHeadingAnchors : false
@@ -21,17 +20,19 @@ layoutBackgroundHeaderSpace: false
 showRelatedContent: false
 ---
 
-1. **Cyber Jutsu Web Pentest**  
-   **Issued by**: Cyber Jutsu Academy
+# 1. **Cyber Jutsu Web Pentest 2023**
 
-   **Date**: April 2023
+**Issued by**: Cyber Jutsu Academy
 
-   **Description**: This certificate acknowledges that Phạm Minh Trí has successfully completed the Web Penetration Testing course, demonstrating proficiency in identifying and exploiting vulnerabilities in web applications. The course covered various essential techniques and tools used in web security.
+**Date**: April 2023
 
-   **Signatories**:
-   - Nguyen Manh Luat, Director, Cyber Jutsu JSC
-   - Lam Minh Bao, Course Mentor
+**Description**: This certificate acknowledges that Phạm Minh Trí has successfully completed the Web Penetration Testing course, demonstrating proficiency in identifying and exploiting vulnerabilities in web applications. The course covered various essential techniques and tools used in web security.
 
-   ![cyberjutsu.jpg](/img/cert/cyber-jutsu/cyberjutsu.jpg)
+**Signatories**:
+
+- Nguyen Manh Luat, Director, Cyber Jutsu JSC
+- Lam Minh Bao, Course Mentor
+
+![Cyber Jutsu Web Pentest 2023](/img/cert/cyber-jutsu/cyberjutsu.jpg)
 
 ---
