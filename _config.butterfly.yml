@@ -1041,6 +1041,7 @@ inject:
 # CDN Settings
 # Don't modify the following settings unless you know how they work
 CDN:
+  enable: false
   # The CDN provider for internal and third-party scripts
   # Options for both: local/jsdelivr/unpkg/cdnjs/custom
   # Note: Dev version can only use 'local' for internal scripts
