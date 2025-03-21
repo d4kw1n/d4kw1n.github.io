@@ -7,5 +7,5 @@ comments: false
 
 <div class="gallery-group-main">
     {% galleryGroup 'Gallery' 'My gallery, empty' '/gallery/me' /images/favicon.ico %}
-    {% galleryGroup 'ASCIS 2024' 'Sinh viên với ATTT - ASCIS 2024 (Chung khảo Hà Nội)' '/gallery/ascis' /images/favicon.ico %}
+    {% galleryGroup 'SVATTT - ASCIS 2024' 'Sinh viên với ATTT - ASCIS 2024 (Chung khảo Hà Nội)' '/gallery/ascis' /images/favicon.ico %}
 </div>
