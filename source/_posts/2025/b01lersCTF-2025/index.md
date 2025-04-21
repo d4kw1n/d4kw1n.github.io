@@ -13,7 +13,7 @@ author:
 
 ### Challenge Description
 
-![alt text](image.png)
+![alt text](/img/2025/b01lers/image.png)
 
 ### Analysis & Source code
 
