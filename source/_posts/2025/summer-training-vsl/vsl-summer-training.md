@@ -4,13 +4,11 @@ title: '[Writeup] VSL Summer Training CTF 2025'
 date: 2025-06-24 10:15:45
 tags: ['Writeup']
 category: ['Writeup']
+top_img: /img/2025/summer-training-vsl/banner.png
+cover: /img/2025/summer-training-vsl/banner.png
 author:
     - d4kw1n
 ---
-title: '[Writeup] - swampctf (2025) - PWN'
-tag: ['PWN', 'Writeup']
-top_img: /img/2025/Nowruz1404CTF/banner.png
-cover: /img/2025/Nowruz1404CTF/banner.png
 
 # Lời nói đầu
 
