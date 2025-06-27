@@ -6,6 +6,8 @@ tags:
 category:
   - Knowledge
   - C++
+top_img: /img/2025/vtables-cpp/banner.png
+cover: /img/2025/vtables-cpp/banner.png
 author:
   - d4kw1n
 ---
