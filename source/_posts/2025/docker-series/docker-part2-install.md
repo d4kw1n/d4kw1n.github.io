@@ -44,6 +44,7 @@ author:
 
 - Mở terminal powershell với quyền admin và gõ lệnh `wsl --version` để kiểm tra wsl của bạn.
 - Nếu chưa có hãy làm theo các bước
+
 ```ps
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
@@ -51,7 +52,7 @@ wsl --install
 wsl --set-default-version 2
 ```
 
-(Bạn có thể làm theo các bước tại đây: [Install WSL](https://learn.microsoft.com/en-us/windows/wsl/install-manual))
+(Bạn có thể làm theo các bước chi tiết hơn tại đây: [Install WSL on Window](https://learn.microsoft.com/en-us/windows/wsl/install-manual))
 
 2. Tải Docker về từ trang chủ
 
@@ -70,14 +71,15 @@ wsl --set-default-version 2
 - Bạn có thể làm theo các lệnh bên dưới để cài đặt `Docker` và `docker-compose` với người dùng `root`
 
 ```bash
-sudo apt-get update
+sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-get install docker.io
 sudo systemctl start docker && sudo systemctl enable docker
-docker --version
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-docker-compose --version
 ```
+- Cài đặt xong, các bạn có thể kiểm tra với các lệnh `docker --version` và `docker-compose --version`
+
+- Ngoài ra, các bạn có thể cài đặt theo các cách cầu hình khác với đường dẫn sau: [Install Docker for Linux with Different Configuration](https://docs.docker.com/engine/install/linux-postinstall/)
 
 ## MacOS
 
