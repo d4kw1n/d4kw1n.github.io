@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://d4kw1n.github.io/sitemap.xml
