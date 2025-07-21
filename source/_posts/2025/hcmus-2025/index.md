@@ -20,16 +20,17 @@ author:
 
 Challenge này được cung cấp mã nguồn. Mình review source thì phát hiện lỗ hổng SQL Injection ở trong hàm `query_by_affiliation()`.
 
-![SQLi trong mã nguồn](web1-1.png)
+![SQLi trong mã nguồn](/img/2025/hcmus-ctf/web1-1.png)
 
 Đồng thời, flag cũng được lưu ở trong DB
 
-![Flag trong DB](web1-2.png)
+![Flag trong DB](/img/2025/hcmus-ctf/web1-2.png)
 
 ⇒ Từ đây có thể đoán được bài này dùng SQLi để get được flag
 
 Dùng payload: `%' UNION SELECT flag, flag, flag FROM flag -- -`
 
-![PoC](web1-3.png)
+![PoC](/img/2025/hcmus-ctf/web1-3.png)
 
 > Flag: `HCMUS-CTF{vibe-coding_more-jobs-for-pentesters!!}`
+
