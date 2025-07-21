@@ -1,5 +1,6 @@
 ---
 title: '[Writeup] - Nowruz 1404 (2025) - PWN'
+description: "Writeup các challenge PWN của giải CTF Nowruz 1404 (2025)"
 tag: ['PWN', 'Writeup']
 top_img: /img/2025/Nowruz1404CTF/banner.png
 cover: /img/2025/Nowruz1404CTF/banner.png

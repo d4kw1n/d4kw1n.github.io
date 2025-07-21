@@ -1,5 +1,6 @@
 ---
 title: '[Docker Series] Hướng dẫn cài đặt (P2)'
+description: "Hướng dẫn cài đặt Docker"
 tag: ['Docker', 'Knowledge']
 top_img: /img/2025/docker-series/banner.png
 cover: /img/2025/docker-series/banner.png

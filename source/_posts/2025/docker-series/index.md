@@ -1,5 +1,6 @@
 ---
 title: '[Docker Series] Tìm hiểu về Độc-kơ (P1)'
+description: "Giới thiệu tổng quát về Docker"
 tag: ['Docker', 'Knowledge']
 top_img: /img/2025/docker-series/banner.png
 cover: /img/2025/docker-series/banner.png
