@@ -2,11 +2,34 @@
 title: '[Writeup] - HCMUS CTF Quals (2025)'
 description: "Đây là writeup của giải HCMUS CTF 2025"
 tag: ['Writeup']
-top_img: /img/2025/Nowruz1404CTF/banner.png
-cover: /img/2025/Nowruz1404CTF/banner.png
+top_img: /img/2025/hcmus-ctf/logo.png
+cover: /img/2025/hcmus-ctf/logo.png
 category: ['Writeup']
 date: 2025-07-22 02:35:38
 author:
     - d4kw1n
 ---
 
+Đây là Writeup HCMUS CTF 2025 của team VSL.T1
+
+# Web
+
+## 1. Web/AsiaCCS
+
+![Description](des1.png)
+
+Challenge này được cung cấp mã nguồn. Mình review source thì phát hiện lỗ hổng SQL Injection ở trong hàm `query_by_affiliation()`.
+
+![SQLi trong mã nguồn](web1-1.png)
+
+Đồng thời, flag cũng được lưu ở trong DB
+
+![Flag trong DB](web1-2.png)
+
+⇒ Từ đây có thể đoán được bài này dùng SQLi để get được flag
+
+Dùng payload: `%' UNION SELECT flag, flag, flag FROM flag -- -`
+
+![PoC](web1-3.png)
+
+> Flag: `HCMUS-CTF{vibe-coding_more-jobs-for-pentesters!!}`
