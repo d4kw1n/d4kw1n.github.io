@@ -1,10 +1,10 @@
 ---
 title: '[Writeup] - HCMUS CTF Quals (2025)'
 description: "Đây là writeup của giải HCMUS CTF 2025"
-tag: ['Writeup']
+tag: ['Writeup', 'Web', 'PWN']
 top_img: /img/2025/hcmus-ctf/logo.png
 cover: /img/2025/hcmus-ctf/logo.png
-category: ['Writeup']
+category: ['Writeup', 'HCMUS-CTF']
 date: 2025-07-22 02:35:38
 author:
     - d4kw1n
