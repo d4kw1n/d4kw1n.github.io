@@ -129,3 +129,124 @@ hoặc
 ```bash
 $ docker image rm <IMAGE ID>
 ```
+## Docker Container
+
+Sau khi đã nắm được cách thao tác với Image, bước tiếp theo là sử dụng Image để khởi tạo và vận hành các Container – đơn vị chạy thực tế của Docker.
+
+### Khởi tạo và chạy Container
+
+Bạn có thể sử dụng câu lệnh sau để **chạy một container từ image**:
+
+```bash
+$ docker run [OPTIONS] IMAGE[:TAG] [COMMAND]
+```
+
+Ví dụ:
+
+```bash
+$ docker run -it ubuntu:20.04 /bin/bash
+```
+
+Giải thích:
+
+- `-it`: kết hợp giữa `-i` (interactive) và `-t` (pseudo-TTY) để bạn có thể tương tác với container qua terminal.
+- `ubuntu:20.04`: tên image và tag.
+- `/bin/bash`: lệnh được thực thi khi container khởi động.
+
+> Khi container chạy với `-it`, bạn sẽ “chui” vào bên trong nó và có thể thao tác như đang ở một máy Linux thật.
+
+---
+
+### Liệt kê Container
+
+- Để xem các container **đang chạy**, dùng:
+
+```bash
+$ docker ps
+```
+
+- Để xem **tất cả** container (kể cả đã dừng):
+
+```bash
+$ docker ps -a
+```
+
+Thông tin hiển thị bao gồm:
+
+```
+- CONTAINER ID
+- IMAGE
+- COMMAND
+- CREATED
+- STATUS
+- PORTS
+- NAMES
+```
+
+---
+
+### Dừng và xóa Container
+
+- Dừng một container:
+
+```bash
+$ docker stop <CONTAINER_ID hoặc NAME>
+```
+
+- Xóa container đã dừng:
+
+```bash
+$ docker rm <CONTAINER_ID hoặc NAME>
+```
+
+- Dừng và xóa một dòng (force remove):
+
+```bash
+$ docker rm -f <CONTAINER_ID>
+```
+
+---
+
+### Vào lại Container
+
+- Nếu bạn có một container đang chạy và muốn vào lại bên trong, hãy dùng:
+
+```bash
+$ docker exec -it <CONTAINER_ID hoặc NAME> /bin/bash
+```
+
+> Đây là cách phổ biến để “SSH” vào một container.
+
+---
+
+## Build Image từ Dockerfile
+
+Ngoài việc dùng image có sẵn từ Docker Hub, bạn có thể **tự tạo một Docker image** bằng cách sử dụng file `Dockerfile`.
+
+Một ví dụ đơn giản:
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM node:20
+
+WORKDIR /app
+COPY . .
+RUN npm install
+
+CMD ["npm", "start"]
+```
+
+Build image từ Dockerfile:
+
+```bash
+$ docker build -t ten_image:tag .
+```
+
+- `-t`: đặt tên cho image.
+- `.`: đường dẫn đến thư mục chứa Dockerfile.
+
+Sau khi build xong, bạn có thể kiểm tra bằng `docker images` và dùng như một image bình thường.
+
+---
+
+_Phần tiếp theo mình sẽ nói về Docker Volume, Network và cách quản lý tài nguyên trong Docker. Hẹn gặp lại trong Part 4 nhé!_
