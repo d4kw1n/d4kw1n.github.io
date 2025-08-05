@@ -37,3 +37,19 @@
       link: https://ctfsearch.hackmap.win/
       avatar: https://ctfsearch.hackmap.win/favicon.f35d1abd.png
       descr: Search CTF Writeups
+
+- class_name: Hacking practice platform
+  class_desc: Hacking practice platform
+  link_list:
+    - name: Hackviser
+      link: https://app.hackviser.com/profile/d4kw1n
+      avatar: https://media.licdn.com/dms/image/v2/C4D0BAQFglSBxwCH2Rw/company-logo_200_200/company-logo_200_200/0/1679414162991?e=2147483647&v=beta&t=FwqBbNdnmDveCEJGTkiNmRWdtTosCCC9XrYwYYeAQNg
+      descr: Hackviser
+    - name: Try Hack Me
+      link: https://tryhackme.com/p/shr3wcl
+      avatar: https://assets.tryhackme.com/img/logo/tryhackme_logo_full.svg
+      descr: Try Hack Me
+    - name: Hack The Box
+      link: https://assets.tryhackme.com/img/logo/tryhackme_logo_full.svg
+      avatar: https://app.hackthebox.com/images/logos/logo-htb.svg
+      descr: Hack The Box
