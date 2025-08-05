@@ -283,7 +283,7 @@ aside:
     category: true
   card_author:
     enable: true
-    description: "PWN Mylife"
+    description: "Epiphany"
     button:
       enable: true
       icon: fab fa-github
@@ -291,7 +291,7 @@ aside:
       link: https://github.com/d4kw1n
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: Every cell in me is changing, by emotion and reason.
   card_recent_post:
     enable: true
     # If set 0 will show all

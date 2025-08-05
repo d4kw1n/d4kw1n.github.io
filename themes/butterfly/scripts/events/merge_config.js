@@ -144,12 +144,12 @@ hexo.extend.filter.register('before_generate', () => {
           enable: true,
           icon: 'fab fa-github',
           text: 'Follow Me',
-          link: 'https://github.com/xxxxxx'
+          link: 'https://github.com/d4kw1n'
         }
       },
       card_announcement: {
         enable: true,
-        content: 'This is my Blog'
+        content: 'Every cell in me is changing, by emotion and reason.'
       },
       card_recent_post: {
         enable: true,
