@@ -1,8 +1,8 @@
 ---
 title: '[Writeup] - swampctf (2025) - PWN'
 tag: ['PWN', 'Writeup']
-top_img: /img/2025/Nowruz1404CTF/banner.png
-cover: /img/2025/Nowruz1404CTF/banner.png
+top_img: /img/2025/swampCTF/banner.png
+cover: /img/2025/swampCTF/banner.png
 category: ['Writeup']
 layout: post
 date: 2025-04-02 00:08:26
